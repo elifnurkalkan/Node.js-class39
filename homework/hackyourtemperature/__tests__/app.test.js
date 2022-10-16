@@ -14,11 +14,11 @@ describe('POST /weather', () => {
     });
   });
   describe('city is not found', () => {
-    test('should respond with a 400 status code', async () => {
+    test('should respond with a 404 status code', async () => {
       const response = await request(app).post('/weather').send({
         cityName: 'fsfksrfsgfm',
       });
-      expect(response.statusCode).toBe(400);
+      expect(response.statusCode).toBe(404);
     });
   });
   describe('request cityName is empty', () => {
@@ -26,7 +26,7 @@ describe('POST /weather', () => {
       const response = await request(app)
         .post('/weather')
         .send({ cityName: '' });
-      expect(response.statusCode).toBe(404);
+      expect(response.statusCode).toBe(400);
     });
   });
 });
